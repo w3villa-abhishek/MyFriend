@@ -1,0 +1,8 @@
+<h1 align="Center" style="margin-top: 17rem;">Welcome! This is a friends Management application</h1>
+
+<div align="Center">
+	<%if !user_signed_in? %>
+	<%= link_to 'Sign Up', new_user_registration_path, class: "btn btn-dark" %>
+	<%= link_to 'Sign In', new_user_session_path, class: " btn btn-dark" %>
+	<%end%>
+</div>

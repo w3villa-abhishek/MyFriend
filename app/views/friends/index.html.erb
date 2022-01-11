@@ -1,0 +1,45 @@
+<br/>
+<h1 style="margin: auto; width: 22%; padding: 2rem; background: #F8F8F8; border-radius: 50px">List of Friends</h1>
+<br/>
+
+<table class="table table-striped table-hover table-bordered ">
+  <thead class="table-dark">
+    <tr align="Center">
+      <th>First name</th>
+      <th>Last name</th>
+      <th>Email</th>
+      <th>Phone</th>
+      <th>User ID</th>
+      <th colspan="3">Operations</th>
+      
+
+
+    </tr>
+  </thead>
+
+  <tbody align="Center">   
+    <% @friends.each do |friend| %>
+    <%if friend.user == current_user%>
+      <tr>
+        <td><%= friend.first_name %></td>
+        <td><%= friend.last_name %></td>
+        <td><%= friend.email %></td>
+        <td><%= friend.phone %></td>
+        <td><%= friend.user_id %></td>
+        <td><%= link_to 'Show', friend, class:"btn btn-outline-primary btn-sm" %></td>
+
+        <%if user_signed_in?%>
+          <td><%= link_to 'Edit', edit_friend_path(friend), class:"btn btn-outline-success btn-sm" %></td>
+          <td><%= link_to 'Delete', friend, class:"btn btn-outline-danger btn-sm", method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <%end%>
+      </tr>
+      <%end%>
+    <% end %>
+  </tbody>
+</table>
+<br>
+
+
+<%if user_signed_in?%>
+  <%= link_to 'Add a New friend', new_friend_path, class: "btn btn-dark" %>
+<%end%>
